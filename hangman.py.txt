@@ -1,0 +1,33 @@
+import random
+
+words = ["apple", "banana", "grape", "orange", "peach"]
+word = random.choice(words)
+guessed = []
+tries = 6
+
+print("Welcome to Hangman!")
+
+while tries > 0:
+    display = ""
+    for letter in word:
+        if letter in guessed:
+            display += letter
+        else:
+            display += "_"
+    print("Word:", display)
+
+    if display == word:
+        print("🎉 You guessed the word:", word)
+        break
+
+    guess = input("Guess a letter: ").lower()
+
+    if guess in guessed:
+        print("You already guessed that.")
+    elif guess in word:
+        guessed.append(guess)
+        print("Correct!")
+    else:
+        guessed.append(guess)
+        tries -= 1
+        print("Wrong! Tries left:", tries)
